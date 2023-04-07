@@ -10,14 +10,9 @@
     
 </head>
 <body>
+    <nav></nav>
     <div id="section-body">
-        <div id="users">
-            @yield("users")
-        </div>
-        <div id="item"></div>
-        <div id="orders">
-            @yield("content")
-        </div>
+        @yield("content")
     </div>
     
     <script src="{{asset('js/app.js');}}"></script>

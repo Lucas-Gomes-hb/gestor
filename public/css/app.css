@@ -1,14 +1,44 @@
-body{
-     background-color: #f0f0f0 !important;
+html,
+body {
+    background-color: #484349 !important;
+    height: 100%;
 }
 
-.body-section{
+body input {
+    display: block;
+    margin-bottom: 5px;
+    padding: 1% !important;
+}
+
+.body-section {
     display: flex;
 }
 
-.users{
-    display: block !important;
+.users {
+    width: 30%;
+    margin: 0.25%;
+    padding: 1%;
+    background-color: #f7f0f0 !important;
+    border-radius: 5px;
+    height: 99vh;
 }
-.users input{
-    display: block;
+.items {
+    width: 30%;
+    margin-top: 0.25%;
+    padding: 1%;
+    background-color: #f7f0f0 !important;
+    border-radius: 5px;
+    height: 99vh;
+}
+.orders {
+    width: 40%;
+    margin: 0.25%;
+    padding: 1%;
+    background-color: #f7f0f0 !important;
+    border-radius: 5px;
+    height: 99vh;
+}
+
+.fullSize {
+    width: 100% !important;
 }
