@@ -22,6 +22,18 @@ body input {
     border-radius: 5px;
     height: 99vh;
 }
+.box {
+    padding: 1%;
+    background-color: #0a52be2f;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.bottomRadius {
+    border-bottom-left-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+}
+
 .items {
     width: 30%;
     margin-top: 0.25%;

@@ -3,7 +3,8 @@
     
     <div id="body-section" class="body-section">
         <div id="users" class="users">
-            <div id="newUsers">
+            <a class="btn btn-primary fullSize" data-toggle="collapse" href="#newUsers" role="button" aria-expanded="false" aria-controls="newUsers" id="collapseNewUsers">Criar novo cliente</a>
+            <div id="newUsers" class="collapse box">
                 <input class="form-control" type="text" placeholder="Nome: João, thiago" id="clientName">
                 <input class="form-control" type="text" placeholder="000.000.000-00" id="clientDocument">
                 <input class="form-control" type="text" placeholder="(00)00000-0000" id="clientCellphone">
