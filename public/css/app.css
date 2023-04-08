@@ -12,21 +12,31 @@ body input {
 
 .body-section {
     display: flex;
+    position:sticky;
 }
 
 .users {
     width: 30%;
     margin: 0.25%;
-    padding: 1%;
+    border-radius: 5px;
+    height: 99vh;
+}
+
+.registerUser{
     background-color: #f7f0f0 !important;
     border-radius: 5px;
     height: 99vh;
 }
-.box {
-    padding: 1%;
-    background-color: #0a52be2f;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+
+.newUsers{
+    background-color: #f7f0f0 !important;
+    border-radius: 5px;
+    height: 99vh;
+    top: -99vh;
+}
+
+.relative{
+    position: relative;
 }
 
 .bottomRadius {
@@ -35,12 +45,33 @@ body input {
 }
 
 .items {
-    width: 30%;
     margin-top: 0.25%;
-    padding: 1%;
+    width: 30%;
     background-color: #f7f0f0 !important;
-    border-radius: 5px;
+    border-radius: 7px;
     height: 99vh;
+}
+
+.btnPanel{
+    display: flex !important;
+    width: 100%;
+}
+
+.btn-primary-op{
+    background-color: #0d6dfd65 !important;
+    color: white !important;
+}
+
+.leftBtn{
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+
+.rightBtn{
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-top-left-radius: 0 !important;
 }
 .orders {
     width: 40%;
@@ -53,4 +84,98 @@ body input {
 
 .fullSize {
     width: 100% !important;
+}
+
+.halfSize{
+    width: 50% !important;
+}
+
+.non{
+    display: none;
+}
+.sh{
+    display: block;
+}
+
+.marginBottom{
+    margin-bottom: 10px !important;
+}
+
+.cardChoice{
+    font-size: 16px !important;
+    text-align: start !important;
+    box-shadow: 1px 1px 5px #888888;
+    background-color: #fff !important;
+}
+
+.spaceBetween{
+    display: flex;
+    justify-content: space-between;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.end{
+    display: flex;
+    justify-content: end;
+    padding: 1%;
+    cursor: pointer;
+}
+
+.middle{
+    display: flex;
+    justify-content: center;
+}
+
+.nome{
+    font-weight: bold;
+}
+
+.out{
+    position: relative !important;
+    right: 500px !important;
+}
+
+.box{
+    padding: 1% !important;
+}
+
+.boxUser{
+    padding: 2% !important;
+}
+
+.slideIn{
+    position: relative;
+    animation: slideIn 1s ease-in-out 0s;
+    animation-fill-mode: forwards; 
+}
+
+.slideOff{
+    position: relative;
+    animation: slideOff 1s ease-in-out 0s;
+    animation-fill-mode: forwards; 
+}
+
+.colorW{
+    color: white !important;
+}
+
+@keyframes slideIn {
+    from{
+        right: 500px;
+    }
+    to{
+        right: 0px;
+    }
+}
+
+@keyframes slideOff {
+    from{
+        right: 0px;
+    }
+    to{
+        right: 500px;
+    }
 }
