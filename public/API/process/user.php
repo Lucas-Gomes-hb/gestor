@@ -7,7 +7,7 @@
             $created_at = date(DATE_ISO8601);
             $updated_at = date(DATE_ISO8601);
 
-            $userSelectQuery = $CONECTION->prepare("INSERT INTO usuario(nome,cpf,celular,created_at,updated_at) VALUES(:nome,:cpf,:telefone,:created_at,:updated_at)")->execute([
+            $userSelectQuery = $CONNECTION->prepare("INSERT INTO usuario(nome,cpf,celular,created_at,updated_at) VALUES(:nome,:cpf,:telefone,:created_at,:updated_at)")->execute([
                 "nome"=>$nome,
                 "cpf"=>$cpf,
                 "telefone"=>$telefone,
@@ -15,11 +15,11 @@
                 "updated_at"=>$updated_at,
             ]);
 
-            $returnAPI = $CONECTION->lastInsertId();
+            $returnAPI = $CONNECTION->lastInsertId();
             break;
         case "all":
             $users = array();
-            $userQuery = $CONECTION->prepare("SELECT * FROM usuario");
+            $userQuery = $CONNECTION->prepare("SELECT * FROM usuario");
             $userQuery->execute();
 
             foreach($userQuery as $row){
@@ -37,7 +37,7 @@
             break;
         case "delete":
             $id = (int) $data["id"];
-            $userDeletingQuery = $CONECTION->prepare("DELETE FROM usuario WHERE id=:id");
+            $userDeletingQuery = $CONNECTION->prepare("DELETE FROM usuario WHERE id=:id");
             $userDeletingQuery->execute(["id"=>$id]);
 
             $returnAPI = "Success";
@@ -49,7 +49,7 @@
             $telefone = (String) $data["telefone"];
             $updated_at = date(DATE_ISO8601);
 
-            $userUpdateQuery = $CONECTION->prepare("UPDATE usuario SET nome=:nome,cpf=:cpf,celular=:telefone,updated_at=:updated_ate WHERE id=:id");
+            $userUpdateQuery = $CONNECTION->prepare("UPDATE usuario SET nome=:nome,cpf=:cpf,celular=:telefone,updated_at=:updated_ate WHERE id=:id");
             $userUpdateQuery->execute([
                 "nome"=>$nome,
                 "id"=>$id,
@@ -64,7 +64,7 @@
             $user = array();
             $id = (int) $data["id"];
 
-            $userQuery = $CONECTION->prepare("SELECT * FROM usuario WHERE id=:id");
+            $userQuery = $CONNECTION->prepare("SELECT * FROM usuario WHERE id=:id");
             $userQuery->execute(["id"=>$id]);
 
             foreach($userQuery as $row){

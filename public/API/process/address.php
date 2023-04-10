@@ -14,7 +14,7 @@
             $created_at = date(DATE_ISO8601);
             $updated_at = date(DATE_ISO8601);
 
-            $addressSelectQuery = $CONECTION->prepare("INSERT INTO enderecos(numero,rua,bairro,cidade,estado,cep,latitude,longitude,idCliente,created_at,updated_at,taxa) VALUE(:numero,:rua,:bairro,:cidade,:estado,:cep,:latitude,:longitude,:idCliente,:created_at,:updated_at,:taxa)")->execute([
+            $addressSelectQuery = $CONNECTION->prepare("INSERT INTO enderecos(numero,rua,bairro,cidade,estado,cep,latitude,longitude,idCliente,created_at,updated_at,taxa) VALUE(:numero,:rua,:bairro,:cidade,:estado,:cep,:latitude,:longitude,:idCliente,:created_at,:updated_at,:taxa)")->execute([
                 "numero"=>$numero,
                 "rua"=>$rua,
                 "cidade"=>$cidade,
@@ -29,11 +29,11 @@
                 "updated_at"=>$updated_at,
             ]);
 
-            $returnAPI = $CONECTION->lastInsertId();
+            $returnAPI = $CONNECTION->lastInsertId();
             break;
         case "all":
             $addresses = array();
-            $addressQuery = $CONECTION->prepare("SELECT * FROM enderecos");
+            $addressQuery = $CONNECTION->prepare("SELECT * FROM enderecos");
             $addressQuery->execute();
 
             foreach($addressQuery as $row){
@@ -58,7 +58,7 @@
             break;
         case "delete":
             $id = (int) $data["id"];
-            $addressDeletingQuery = $CONECTION->prepare("DELETE FROM enderecos WHERE idCliente=:id");
+            $addressDeletingQuery = $CONNECTION->prepare("DELETE FROM enderecos WHERE idCliente=:id");
             $addressDeletingQuery->execute(["id"=>$id]);
 
             $returnAPI = "Success";
@@ -77,7 +77,7 @@
             $taxa = (float) $data["taxa"];
             $updated_at = date(DATE_ISO8601);
 
-            $addressUpdateQuery = $CONECTION->prepare("UPDATE enderecos SET numero=:numero,rua=:rua,	bairro=:bairro,	cidade=:cidade,	estado=:estado,	cep=:cep, latitute=:latitude,longitude=:longitude,idCliente=:idCliente,	updated_at=:updated_at	 WHERE id=:id");
+            $addressUpdateQuery = $CONNECTION->prepare("UPDATE enderecos SET numero=:numero,rua=:rua,	bairro=:bairro,	cidade=:cidade,	estado=:estado,	cep=:cep, latitute=:latitude,longitude=:longitude,idCliente=:idCliente,	updated_at=:updated_at	 WHERE id=:id");
             $addressUpdateQuery->execute([
                 "id"=>$id,
                 "numero"=>$numero,
@@ -99,7 +99,7 @@
             $address = array();
             $id = (int) $data["id"];
 
-            $addressQuery = $CONECTION->prepare("SELECT * FROM enderecos WHERE idCliente=:id");
+            $addressQuery = $CONNECTION->prepare("SELECT * FROM enderecos WHERE idCliente=:id");
             $addressQuery->execute(["id"=>$id]);
 
             foreach($addressQuery as $row){

@@ -6,18 +6,18 @@
             $created_at = date(DATE_ISO8601);
             $updated_at = date(DATE_ISO8601);
 
-            $itemSelectQuery = $CONECTION->prepare("INSERT INTO item(nome,valor,created_at,updated_at) VALUES(:nome,:valor,:created_at,:updated_at)")->execute([
+            $itemSelectQuery = $CONNECTION->prepare("INSERT INTO item(nome,valor,created_at,updated_at) VALUES(:nome,:valor,:created_at,:updated_at)")->execute([
                 "nome"=>$nome,
                 "valor"=>$valor,
                 "created_at"=>$created_at,
                 "updated_at"=>$updated_at,
             ]);
 
-            $returnAPI = $CONECTION->lastInsertId();
+            $returnAPI = $CONNECTION->lastInsertId();
             break;
         case "all":
             $items = array();
-            $itemQuery = $CONECTION->prepare("SELECT * FROM item");
+            $itemQuery = $CONNECTION->prepare("SELECT * FROM item");
             $itemQuery->execute();
 
             foreach($itemQuery as $row){
@@ -34,7 +34,7 @@
             break;
         case "delete":
             $id = (int) $data["id"];
-            $itemDeletingQuery = $CONECTION->prepare("DELETE FROM item WHERE id=:id");
+            $itemDeletingQuery = $CONNECTION->prepare("DELETE FROM item WHERE id=:id");
             $itemDeletingQuery->execute(["id"=>$id]);
 
             $returnAPI = "Success";
@@ -45,7 +45,7 @@
             $valor = (float) $data["valor"];
             $updated_at = date(DATE_ISO8601);
 
-            $itemUpdateQuery = $CONECTION->prepare("UPDATE item SET nome=:nome,valor=:valor,updated_at=:updated_ate WHERE id=:id");
+            $itemUpdateQuery = $CONNECTION->prepare("UPDATE item SET nome=:nome,valor=:valor,updated_at=:updated_ate WHERE id=:id");
             $itemUpdateQuery->execute([
                 "nome"=>$nome,
                 "id"=>$id,

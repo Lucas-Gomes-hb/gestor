@@ -1,4 +1,7 @@
-<?php 
+<?php
+
+use function PHPUnit\Framework\fileExists;
+
 header('Access-Control-Allow-Origin: *'); 
 header('Content-type:application/json;charset=utf-8');
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
@@ -7,13 +10,14 @@ header("Pragma: no-cache");
 
 $return = array();
 $error = false;
-$action = $_POST["action"];
 $returnAPI = "";
-$CONECTION = new PDO("mysql:host=127.0.0.1;dbname=gestor;charset=utf8mb4", "root", "", []);
-$data = $_POST["info"];
+$CONNECTION = new PDO("mysql:host=127.0.0.1;dbname=gestor;charset=utf8mb4", "root", "", []);
 
 switch ($_SERVER["REQUEST_METHOD"]) {
     case 'POST':
+        $action = $_POST["action"];
+        $data = $_POST["info"];
+
         switch ($action) {
             case "user":
                 include_once("process/user.php");
@@ -24,13 +28,24 @@ switch ($_SERVER["REQUEST_METHOD"]) {
             case "address":
                 include_once("process/address.php");
                 break;
+            case "order":
+                include_once("process/order.php");
+                break;
             default:
                 $error = "No map action";
                 break;
         }
+        
         break;
     case "GET":
-        include_once("process/order.php");
+        ob_start();
+        if(file_exists("cache/cache.json")){
+            $json = json_decode(file_get_contents("cache/cache.json"));
+            $returnAPI = $json;
+        }else{
+
+        }
+        $returnAPI = array();
         break;
     default:
         $error = "No map request method";

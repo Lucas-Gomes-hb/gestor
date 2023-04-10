@@ -75,24 +75,7 @@
 
         <div id="registerItem" class="sh box"></div>
     </div>
-
-    <!-- <div id="address" class="address">
-                <div class="btnPanel">
-                    <a class="btn btn-primary halfSize leftBtn"id="collapseNewAddresses">Criar novo endereço</a>
-                    <a class="btn btn-primary-op halfSize rightBtn" id="collapseRegisterAddress">Endereços registrados</a>
-                </div>
-                
-                <div id="newAddress" class="sh box">
-                    <input class="form-control" type="number" placeholder="Número da rua" id="numero">
-                    <input class="form-control" type="text" placeholder="Nome da rua" id="rua">
-                    <input class="form-control" type="text" placeholder="Nome do bairro" id="bairro">
-                    <input class="form-control" type="text" placeholder="Nome da cidade" id="cidade">
-                    <input class="form-control" type="text" placeholder="Estado" id="estado">
-                    <input class="form-control" type="text" placeholder="Cep" id="cep">
-                    <input class="form-control" type="number" placeholder="Taxa de entrega" id="taxa">
-                    <input type="button" value="Criar" class="btn btn-success fullSize" id="newAddres">
-                </div>
-            </div> -->
+    
     <div id="orders" class="orders">
         <button class="btn btn-success fullSize">Criar pedido</button>
     </div>
