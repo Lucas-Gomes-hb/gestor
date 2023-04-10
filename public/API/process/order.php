@@ -18,7 +18,11 @@
                 "updated_at"=>$updated_at,
             ]);
 
-            unlink("../cache/cache.json");
+            echo "OLAA";
+            if(file_exists("cache/cache.json")){
+                echo "OLAA2";
+                unlink("cache/cache.json");
+            }
             $returnAPI = $CONNECTION->lastInsertId();
             break;
         case 'delete':
@@ -27,7 +31,9 @@
             $orderDeleteQuery = $CONNECTION->prepare("DELETE FROM pedidos WHERE id=:id");
             $orderDeleteQuery->execute(["id"=>$id]);
 
-            unlink("../cache/cache.json");
+            if(file_exists("cache/cache.json")){
+                unlink("cache/cache.json");
+            }
             $returnAPI = "SUCCESS";
             break;
     }

@@ -35,14 +35,45 @@ switch ($_SERVER["REQUEST_METHOD"]) {
         
         break;
     case "GET":
-        ob_start();
         if(file_exists("cache/cache.json")){
             $json = json_decode(file_get_contents("cache/cache.json"));
             $returnAPI = $json;
         }else{
+            $orders = array();
+    
+                $orderQuery = $CONNECTION->prepare("SELECT o.id,o.dataEntrega, u.id AS idCliente, u.nome, u.cpf, e.numero, e.rua,e.bairro, e.cidade,e.estado,e.taxa, i.nome AS item ,i.valor FROM pedidos o, usuario u, enderecos e, item i WHERE e.id = o.endereco AND i.id = o.item AND u.id = o.idCliente");
+                $orderQuery->execute();
 
+                foreach($orderQuery as $row){
+                    $order =array(
+                        "id"=>$row["id"],
+                        "idCliente"=>$row["idCliente"],
+                        "nomeCliente"=>$row["nome"],
+                        "cpfCliente"=>$row["cpf"],
+                        "numero"=>$row["numero"],
+                        "rua"=>$row["rua"],
+                        "bairro"=>$row["bairro"],
+                        "cidade"=>$row["cidade"],
+                        "estado"=>$row["estado"],
+                        "taxa"=>$row["taxa"],
+                        "item"=>$row["item"],
+                        "itemValor"=>$row["valor"],
+                        "dataEntrega"=>$row["dataEntrega"],
+                    );
+
+                    array_push($orders,$order);
+                }
+                $returnAPI = $orders;
+
+                $json = "cache/cache.json";
+                $fp = fopen($json, "w");
+
+                $cache = json_encode($orders);
+
+                $clean = preg_replace(array('/<!--(.*)-->/Uis',"/[[:blank:]]+/"),array('',' '),str_replace(array("\n","\r","\t"),'', $cache));
+
+                $fw = fwrite($fp, $clean);
         }
-        $returnAPI = array();
         break;
     default:
         $error = "No map request method";

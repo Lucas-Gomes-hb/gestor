@@ -99,8 +99,125 @@ function openItem(type) {
     }
 }
 
-function openOrderItems() {
+function openOrderItems(){
+    $("#openItemsButton").addClass("bottomBtn");
+    $("#openItemsButton").attr("onclick","closeOrderItems()");
+    $("#itemOptions").removeClass("non");
+}
 
+function closeOrderItems(){
+    $("#openItemsButton").removeClass("bottomBtn");
+    $("#openItemsButton").attr("onclick","openOrderItems()");
+    $("#itemOptions").addClass("non");
+}
+
+async function addOrder(){
+    let error = false;
+    let items = $("input[name='items']:checked").val();
+
+    let user = $("#userSelect").val();
+
+    let time = $("#deliveryDate").val();
+    let hour = $("#deliveryHour").val();
+
+    if(items == "")error = "Item vazio";
+    if(user == "")error = "Usuario vazio";
+    if(time == "")error = "Data de entrega vazio";
+    if(hour == "")error = "Data de entrega vazio";
+
+    if(!error){
+        let address = await communication("address", { "action": "one", "id": parseInt(user) });
+        let response = await communication("order",{
+            "action":"new",
+            "idCliente":user,
+            "endereco":address.return.id,
+            "item":items,
+            "dataEntrega": `${time}=${hour}`
+        });
+
+        if(response.status){
+            let userOrder = await communication("user",{"action":"one","id":user});
+            let itemOrder = await communication("item",{"action":"one","id":items});
+
+            time = time.split("-");
+            time = `${time[2]}/${time[1]}/${time[0]}`
+            
+            $("#allOrders").append('<div>' +
+            '<input type="radio" class="btn-check" name="items" id="' + response.return + 'usuario" autocomplete="off" value="'+response.return+'">' +
+            '<label class="btn fullSize marginBottom cardChoice" for="' + response.return + 'usuario">' +
+            '<div class="spaceBetween">' +
+            '<div class="nome">'+userOrder.return.nome+'</div>' +
+            '</div>' +
+            '<div class="spaceBetween">' +
+            '<div>'+`Entrega até ${time} as ${hour}`+'</div>' +
+            '<div>'+itemOrder.return.nome+'</div>' +
+            '</div>' +
+            '</label>' +
+            '</div>');
+            openOrderScreen("out");
+            closeOrderItems();
+            $("#deliveryDate").val("");
+            $("#deliveryHour").val("");
+        }
+    }
+
+    if(error){
+        console.log(error);
+    }
+}
+
+async function openOrderScreen(type) {
+    switch (type) {
+        case "new":
+            $("#backScreen").removeClass("non");
+            $("#newOrder").removeClass("non");
+
+            let usuarios = await communication("user", {
+                "action": "all"
+            });
+            let items = await communication("item", {
+                "action": "all"
+            });
+
+            if(usuarios.status && items.status){
+                $("#userSelect").html('<option value="null">Selecione o usuario para o pedido</option>');
+                $("#itemOptions").html('');
+                usuarios = usuarios.return;
+                items = items.return;
+
+                usuarios = usuarios.map(
+                    (user)=>{
+                        return "<option value='"+user.id+"'>"+user.nome+"</option>"
+                    }
+                );
+
+                items = items.map((item)=>{
+                    return '<div>' +
+                    '<input type="radio" class="btn-check" name="items" id="' + item.id + 'usuario" autocomplete="off" value="'+item.id+'">' +
+                    '<label class="btn fullSize marginBottom cardChoice" for="' + item.id + 'usuario">' +
+                    '<div class="spaceBetween">' +
+                    '<div class="nome">' + item.nome + '</div>' +
+                    '</div>' +
+                    '<div class="spaceBetween">' +
+                    '<div></div>' +
+                    '<div>R$ ' + item.valor.toString().replaceAll(".",",") + '</div>' +
+                    '</div>' +
+                    '</label>' +
+                    '</div>';
+                })
+
+                $("#userSelect").append(usuarios.join(""));
+                $("#itemOptions").append(items.join(""));
+            }
+
+            break;
+        case "out":
+            $("#backScreen").addClass("non");
+            $("#newOrder").addClass("non");
+            break;
+        default:
+            break;
+    }
 }
 
 async function editUser(id) {
@@ -374,8 +491,47 @@ async function getAllItems() {
     $("#registerItem").html(items.join(""));
 }
 
+async function gettingAllOrders(){
+    await $.ajax({
+        url: "http://localhost/gestor/public/API/",
+        method: "GET",
+        dataType: "JSON",
+        success: (dataServer) => {
+            orders = dataServer.return;
+            orders = orders.map((order)=>{
+                let time = order.dataEntrega.split("=");
+                let hour = time[1];
+                time = time[0].split("-");
+                time = `${time[2]}/${time[1]}/${time[0]}`
+
+                return '<div>' +
+                '<input type="radio" class="btn-check" name="items" id="' + order.id + 'usuario" autocomplete="off" value="'+order.id+'">' +
+                '<label class="btn fullSize marginBottom cardChoice" for="' + order.id + 'usuario">' +
+                '<div class="spaceBetween">' +
+                '<div class="nome">'+order.nomeCliente+'</div>' +
+                '</div>' +
+                '<div class="spaceBetween">' +
+                '<div>'+`Entrega até ${time} as ${hour}`+'</div>' +
+                '<div>'+order.item+'</div>' +
+                '</div>' +
+                '</label>' +
+                '</div>'
+            });
+            
+            $("#allOrders").html(orders.join(""));
+        },
+        error: () => {
+            console.log("Connection problem")
+        }
+    });
+}
 
 $(document).ready(function () {
     getAllClients();
     getAllItems();
+    gettingAllOrders();
+
+    setInterval(()=>{
+        gettingAllOrders();
+    },20000)
 })

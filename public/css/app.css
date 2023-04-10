@@ -154,6 +154,10 @@ body input {
     margin-bottom: 10px !important;
 }
 
+.marginTop{
+    margin-top: 10px !important;
+}
+
 .cardChoice{
     font-size: 16px !important;
     text-align: start !important;
@@ -193,6 +197,19 @@ body input {
 
 .box{
     padding: 1% !important;
+}
+
+.scroll{
+    overflow: auto;
+    height: 88vh;
+    padding: 0.5%;
+}
+
+.boxOptions{
+    background-color: #0d6dfd1a;
+    padding: 1% !important;
+    border-bottom-left-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
 }
 
 .boxUser{

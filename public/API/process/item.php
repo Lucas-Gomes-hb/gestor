@@ -55,6 +55,22 @@
             
             $returnAPI = "Success";
             break;
+        case "one":
+            $item = array();
+            $id = $data["id"];
+            $itemQuery = $CONNECTION->prepare("SELECT * FROM item WHERE id=:id");
+            $itemQuery->execute(["id"=>$id]);
+
+            foreach($itemQuery as $row){
+                $item = array(
+                    "id" => $row["id"],
+                    "nome" => $row["nome"],
+                    "valor" => $row["valor"],
+                );
+            }
+
+            $returnAPI = $item;
+            break;
         default:
             $returnAPI = "Nothing Done";
             break;
