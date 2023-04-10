@@ -19,8 +19,9 @@ return new class extends Migration
             $table->string("cidade");
             $table->string("estado");
             $table->string("cep");
-            $table->string("latitute");
+            $table->string("latitude");
             $table->string("longitude");
+            $table->double("taxa",10,2);
             $table->foreignId("idCliente")->constrained("usuario");
             $table->timestamps();
         });

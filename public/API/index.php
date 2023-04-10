@@ -12,21 +12,28 @@ $returnAPI = "";
 $CONECTION = new PDO("mysql:host=127.0.0.1;dbname=gestor;charset=utf8mb4", "root", "", []);
 $data = $_POST["info"];
 
-switch($action){
-    case "user":
-        include_once("process/user.php");
+switch ($_SERVER["REQUEST_METHOD"]) {
+    case 'POST':
+        switch ($action) {
+            case "user":
+                include_once("process/user.php");
+                break;
+            case "item":
+                include_once("process/item.php");
+                break;
+            case "address":
+                include_once("process/address.php");
+                break;
+            default:
+                $error = "No map action";
+                break;
+        }
         break;
-    case "item":
-        include_once("process/item.php");
-        break;
-    case "address":
-        include_once("process/address.php");
-        break;
-    case "order":
+    case "GET":
         include_once("process/order.php");
         break;
     default:
-        $error = "No map action";
+        $error = "No map request method";
         break;
 }
 

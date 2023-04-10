@@ -60,6 +60,24 @@
             
             $returnAPI = "Success";
             break;
+        case "one":
+            $user = array();
+            $id = (int) $data["id"];
+
+            $userQuery = $CONECTION->prepare("SELECT * FROM usuario WHERE id=:id");
+            $userQuery->execute(["id"=>$id]);
+
+            foreach($userQuery as $row){
+                $user = array(
+                    "id" => $row["id"],
+                    "nome" => $row["nome"],
+                    "cpf" => $row["cpf"],
+                    "telefone" => $row["celular"],
+                );
+            }
+
+            $returnAPI = $user;
+            break;
         default:
             $returnAPI = "Nothing Done";
             break;
