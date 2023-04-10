@@ -2,6 +2,31 @@
 @section("content")
 
 <div id="body-section" class="body-section">
+    <div id="newOrder" class="modalOrder">
+        <div class="end">
+            <svg onclick="" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+            </svg>
+        </div>
+
+        <div class="pad">
+            <select name="User" id="userSelect" class="form-control marginBottom">
+                <option value="null">Selecione o usuario para o pedido</option>
+            </select>
+            
+            <button id="openItemsButton" class="btn btn-primary fullSize marginBottom" onclick="openOrderItems()">Selecione os items do pedido</button>
+            <div id="itemOptions" class="non boxOptions"></div>
+
+            <div class="flex marginBottom">
+                <input type="date" name="entregaData" id="deliveryDate" class="form-control" placeholder="Data de entrega do pedido">
+                <input type="time" name="entregaHora" id="deliveryHour" class="form-control" placeholder="Hora de entrega">
+            </div>
+
+            <input type="button" value="Lançar pedido" class="btn btn-success fullSize">
+        </div>
+    </div>
+    <div id="backScreen" class="backScreen"></div>
+
     <div id="users" class="users">
         <div id="registerUser" class="relative registerUser">
             <div class="spaceBetween marginBottom">
@@ -80,7 +105,6 @@
         <button class="btn btn-success fullSize" onclick="openOrderScreen('new')">Criar pedido</button>
     </div>
 
-    <div id="newOrder" class="modal"></div>
 </div>
 
 @endsection

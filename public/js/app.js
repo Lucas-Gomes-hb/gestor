@@ -99,6 +99,10 @@ function openItem(type) {
     }
 }
 
+function openOrderItems() {
+
+}
+
 async function editUser(id) {
     let user = await communication("user", { "action": "one", "id": id });
     let address = await communication("address", { "action": "one", "id": id });

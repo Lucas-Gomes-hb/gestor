@@ -11,6 +11,12 @@ body input {
     padding: 1% !important;
 }
 
+.end input, select{
+    display: block;
+    margin-bottom: 5px;
+    padding: 1% !important;
+}
+
 .one{
     margin-top: 5px;
     margin-right: 5px;
@@ -80,6 +86,15 @@ body input {
     color: white !important;
 }
 
+.bottomBtn{
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+.topBtn{
+    border-top-left-radius: 0 !important;
+        border-top-right-radius: 0 !important;
+}
+
 .leftBtn{
     border-bottom-left-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
@@ -98,6 +113,26 @@ body input {
     background-color: #f7f0f0 !important;
     border-radius: 5px;
     height: 99vh;
+}
+
+.backScreen{
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background-color: #48434950;
+    z-index: 200;
+}
+
+.modalOrder{
+    height: 80vh;
+    width: 70vw;
+    background-color: #f7f0f0 !important;
+    border-radius: 5px;
+    position: absolute;
+    top:10vh;
+    left: 15vw;
+    right: 15vw;
+    z-index: 1000;
 }
 
 .fullSize {
@@ -186,6 +221,10 @@ body input {
 
 .cad{
     margin-top: 10px;
+}
+
+.pad{
+    padding: 1%;
 }
 
 @keyframes slideIn {
