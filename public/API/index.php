@@ -1,7 +1,4 @@
 <?php
-
-use function PHPUnit\Framework\fileExists;
-
 header('Access-Control-Allow-Origin: *'); 
 header('Content-type:application/json;charset=utf-8');
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");

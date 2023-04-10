@@ -2,6 +2,7 @@ html,
 body {
     background-color: #484349 !important;
     height: 100%;
+    overflow: hidden;
 }
 
 body input {
@@ -25,7 +26,7 @@ body input {
 }
 
 .users {
-    width: 30%;
+    width: 30vw;
     margin: 0.25%;
     border-radius: 5px;
     height: 99vh;
@@ -35,7 +36,7 @@ body input {
     background-color: #f7f0f0 !important;
     border-radius: 5px;
     height: 99vh;
-    z-index: 100;
+    /* z-index: 100; */
 }
 
 .newUsers{
@@ -63,7 +64,7 @@ body input {
 
 .items {
     margin-top: 0.25%;
-    width: 30%;
+    width: 30vw;
     background-color: #f7f0f0 !important;
     border-radius: 7px;
     height: 99vh;
@@ -91,7 +92,7 @@ body input {
     border-top-left-radius: 0 !important;
 }
 .orders {
-    width: 40%;
+    width: 40vw;
     margin: 0.25%;
     padding: 1%;
     background-color: #f7f0f0 !important;

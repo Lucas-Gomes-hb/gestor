@@ -36,34 +36,26 @@ function resetForm() {
 function openCreationUser(type) {
     switch (type) {
         case "new":
-            $("#registerUser").addClass("slideOff");
             $("#newUsers").removeClass("out");
             $("#newUsers").removeClass("slideOff");
             $("#newUsers").addClass("slideIn");
             break;
         case "register":
             $("#newUsers").addClass("slideOff");
-            $("#registerUser").removeClass("slideOff");
-            $("#registerUser").addClass("slideIn");
             resetForm();
             break;
         case "allIn":
             $("#editUser").removeClass("out");
             $("#editUser").removeClass("slideOff");
             $("#editUser").addClass("slideIn");
-            $("#registerUser").removeClass("slideIn");
-            $("#registerUser").addClass("slideOff");
             break;
         case "allOut":
             $("#editUser").removeClass("slideIn");
             $("#editUser").addClass("slideOff");
-            $("#registerUser").removeClass("slideOff");
-            $("#registerUser").addClass("slideIn");
             $("#editUserInfo").html("");
             $("#nomeAll").html("");
             break;
         case "edit":
-            $("#registerUser").addClass("slideOff");
             $("#editUser").removeClass("out");
             $("#editUser").removeClass("slideOff");
             $("#editUser").addClass("slideIn");

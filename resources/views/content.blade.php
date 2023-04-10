@@ -75,10 +75,12 @@
 
         <div id="registerItem" class="sh box"></div>
     </div>
-    
+
     <div id="orders" class="orders">
-        <button class="btn btn-success fullSize">Criar pedido</button>
+        <button class="btn btn-success fullSize" onclick="openOrderScreen('new')">Criar pedido</button>
     </div>
+
+    <div id="newOrder" class="modal"></div>
 </div>
 
 @endsection
