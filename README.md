@@ -1,6 +1,6 @@
-Projeto de Gestor/PDV
+Projeto de Gestor/PDV:
 
-Acabei deixando todos os arquivos para o funcionamento da plataforma no git, deixando o .gitignore vazio
+Acabei deixando todos os arquivos para o funcionamento da plataforma no git, deixando o .gitignore vazio, por isso basta apenas clonar a aplicação na pasta "htdocs" do XAMPP.
 
 Por conta de dificudades com a instalação do docker junto as laravel, acabei usando o XAMPP para criar e executar o projeto, por isso para fazer com que ele funcione é necessario ter o XAMPP 8.1.12 no computador e o projeto dentro da pasta htdocs dele.
 
